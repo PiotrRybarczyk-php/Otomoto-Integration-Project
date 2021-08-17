@@ -1,15 +1,15 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '66062.m.tld.pl',
-	'username' => 'admin66062_new_panel_2',
-	'password' => '1Cx3A*Rqs5',
-	'database' => 'baza66062_new_panel_2',
+	'hostname' => '212.85.120.132',
+	'username' => '00033972_strona',
+	'password' => '@NOWASTRONA@2018',
+	'database' => '00033972_strona',
 	// 'hostname' => 'localhost',
 	// 'username' => 'root',
 	// 'password' => '',
