@@ -1,0 +1,59 @@
+Options -Indexes
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-XSS-Protection "1; mode=block"
+#deny kiedy nie używamy treści w iframeach z innych stron
+</IfModule>
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+
+#Removes access to the system folder by users.
+#Additionally this will allow you to create a System.php controller,
+#previously this would not have been possible.
+#'system' can be replaced if you have renamed your system folder.
+RewriteCond %{REQUEST_URI} ^system.*
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+#When your application folder isn't in the system folder
+#This snippet prevents user access to the application folder
+#Submitted by: Fabdrol
+#Rename 'application' to your applications folder name.
+RewriteCond %{REQUEST_URI} ^application.*
+RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+#Checks to 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L]	
+
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    # If we don't have mod_rewrite installed, all 404's
+    # can be sent to index.php, and everything works as normal.
+    # Submitted by: ElliotHaughin
+
+ErrorDocument 404 /index.php
+
+</IfModule>
+#Ustawienia plików
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|css|pdf)$">
+
+Header set Cache-Control "max-age=2592000"
+
+</FilesMatch>
+
+<FilesMatch ".(pl|php|cgi|spl|scgi|fcgi)$">
+
+Header unset Cache-Control
+
+</FilesMatch>
+
+
+#Ustawienia PHP
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+php_value max_execution_time 240
+php_value max_input_time 180
