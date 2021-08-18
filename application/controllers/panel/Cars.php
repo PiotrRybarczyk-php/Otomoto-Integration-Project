@@ -7,13 +7,26 @@ class Cars extends CI_Controller
 	public function index()
 	{
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
-			$table = "ttt";
+			$table = "cars";
+			// DEFAULT DATA
+			$data = loadDefaultData();
+			$data['rows'] = $this->back_m->get_all($table);
+			echo loadSubViewsBack($this->uri->segment(2), 'index', $data);
+		} else {
+			redirect('panel');
+		}
+	}
+
+	public function gallery($id)
+	{
+		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
 			// DEFAULT DATA
 			$data = loadDefaultData();
 
-			$data['rows'] = $this->back_m->get_all($table);
+			$data['project'] = $this->back_m->get_one('cars', $id);
+			$data['files'] = $this->back_m->get_car_images('car_files', $id);
 
-			echo loadSubViewsBack($this->uri->segment(2), 'index', $data);
+			echo loadSubViewsBack($this->uri->segment(2), 'gallery', $data);
 		} else {
 			redirect('panel');
 		}
@@ -37,10 +50,14 @@ class Cars extends CI_Controller
 	public function form($type, $id = '')
 	{
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
-			$table = $this->uri->segment(2);
+			$table = 'cars';
 
 			// DEFAULT DATA
 			$data = loadDefaultData();
+			$data['brands'] = $this->back_m->get_all('brands');
+			$data['dealer'] = $this->back_m->get_all('salons');
+			$data['color'] = $this->back_m->get_all('colors');
+			$data['users'] = $this->back_m->get_all('user');
 
 			if ($id != '') {
 				$data['value'] = $this->back_m->get_one($table, $id);
@@ -58,7 +75,6 @@ class Cars extends CI_Controller
 
 			// DEFAULT DATA
 			$data = loadDefaultData();
-			$data['table'] = $table;
 
 			if ($id != '') {
 				$data['value'] = $this->back_m->get_one($table, $id);
@@ -73,7 +89,7 @@ class Cars extends CI_Controller
 	{
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
 
-			defaultFormAction($_POST, $table, $type, $id, TRUE);
+			defaultFormAction($_POST, $table, $type, $id);
 
 			redirect('panel/' . 'cars');
 		} else {

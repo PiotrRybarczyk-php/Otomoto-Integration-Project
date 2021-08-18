@@ -24,8 +24,8 @@
     </a><!-- br-menu-link -->
     <ul class="br-menu-sub nav flex-column">
       <li class="nav-item"><a href="<?= base_url(); ?>panel/cars" class="nav-link">Wszystkie Pojazdy</a></li>
-      <li class="nav-item"><a href="<?= base_url(); ?>panel/cars/brand" class="nav-link">Marki</a></li>
-      <li class="nav-item"><a href="<?= base_url(); ?>panel/cars/color" class="nav-link">Kolory</a></li>
+      <!-- <li class="nav-item"><a href="<?= base_url(); ?>panel/cars/brand" class="nav-link">Marki</a></li> -->
+      <!--  <li class="nav-item"><a href="<?= base_url(); ?>panel/cars/color" class="nav-link">Kolory</a></li> -->
     </ul>
   </div><!-- br-sideleft-menu -->
 </div><!-- br-sideleft -->
