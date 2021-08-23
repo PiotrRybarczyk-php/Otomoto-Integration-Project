@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require 'application/libraries/Curl.php';
 
 class Cars extends CI_Controller
 {
@@ -96,5 +97,9 @@ class Cars extends CI_Controller
 		} else {
 			redirect('panel');
 		}
+	}
+
+	function otomoto_make()
+	{
 	}
 }
