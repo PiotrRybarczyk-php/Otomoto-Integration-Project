@@ -61,6 +61,7 @@ class Cars extends CI_Controller
 
 			if ($id != '') {
 				$data['value'] = $this->back_m->get_one($table, $id);
+				$data['meta'] = $this->back_m->get_by('otomoto_cars_meta', 'car_id', 'meta_key', $id, 'features');
 			}
 			echo loadSubViewsBack($table, 'form', $data);
 		} else {

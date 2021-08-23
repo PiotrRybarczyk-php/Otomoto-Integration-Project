@@ -9,6 +9,14 @@ class Back_m extends CI_Model
         return $query->result();
     }
 
+    public function get_by($table, $col1, $col2, $param1, $param2)
+    {
+        $this->db->where([$col1 => $param1]);
+        $this->db->where([$col2 => $param2]);
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
     public function get_with_limit($table, $limit, $sort = null)
     {
         $this->db->limit($limit);
@@ -68,11 +76,28 @@ class Back_m extends CI_Model
         return $query;
     }
 
+    public function insert_features($features)
+    {
+        $data = array('meta_key' => 'features', 'meta_val' => $features);
+        //$data = $this->security->xss_clean($data);
+        $query = $this->db->insert('otomoto_cars_meta', $data);
+        return $query;
+    }
+
     public function update($table, $data, $id)
     {
         //$data = $this->security->xss_clean($data);
         $this->db->where(['id' => $id]);
         $query = $this->db->update($table, $data);
+        return $query;
+    }
+
+    public function update_features($features, $id)
+    {
+        $data = array('meta_key' => 'features', 'meta_val' => $features);
+        $this->db->where(['car_id' => $id]);
+        $this->db->where(['meta_key' => 'features']);
+        $query = $this->db->update('otomoto_cars_meta', $data);
         return $query;
     }
 

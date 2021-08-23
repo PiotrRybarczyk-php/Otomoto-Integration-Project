@@ -16,12 +16,12 @@ function defaultFormAction($post, $table, $type, $id, bool $photo = FALSE)
         $CI->load->library('upload', $config);
         $CI->upload->initialize($config);
     }
-
+    $spec = '[';
     foreach ($post as $key => $value) {
 
-        if (!$CI->db->field_exists($key, $table)) {
+        /*if (!$CI->db->field_exists($key, $table)) {
             $CI->base_m->create_column($table, $key);
-        }
+        }*/
         if ($photo === TRUE) {
             if (!$CI->db->field_exists('photo2', $table)) {
                 $CI->base_m->create_column($table, 'photo2');
@@ -65,37 +65,28 @@ function defaultFormAction($post, $table, $type, $id, bool $photo = FALSE)
                     $insert['photo2'] = '';
                 }
             } else {
+                print_r('lol');
+                //$insert[$key] = $value;
+            }
+        } else {
+            if (strpos($key, 'features') !== false) {
+                for ($i = 0; $i < count($value); $i++) {
+                    $spec .= '"' . $value[$i] . '",';
+                }
+            } else {
                 $insert[$key] = $value;
             }
-        } else
-            $insert[$key] = $value;
+        }
     }
+    $spec = substr($spec, 0, -1);
+    $spec .= ']';
     if ($type == 'insert') {
         $CI->back_m->insert($table, $insert);
+        $CI->back_m->insert_features($spec);
         $CI->session->set_flashdata('flashdata', 'Rekord został dodany!');
     } else {
         $CI->back_m->update($table, $insert, $id);
+        $CI->back_m->update_features($spec, $id);
         $CI->session->set_flashdata('flashdata', 'Rekord został zaktualizowany!');
-    }
-}
-function safeFormAction($post, $table, $type, $id)
-{
-    $CI = &get_instance();
-
-    foreach ($post as $key => $value) {
-
-        if (!$CI->db->field_exists($key, $table)) {
-            print_r('Warning: No such value as ' . $key . 'in table: ' . $table);
-            exit;
-        } else {
-            $insert[$key] = $value;
-        }
-        if ($type == 'insert') {
-            $CI->back_m->insert($table, $insert);
-            $CI->session->set_flashdata('flashdata', 'Rekord został dodany!');
-        } else {
-            $CI->back_m->update($table, $insert, $id);
-            $CI->session->set_flashdata('flashdata', 'Rekord został zaktualizowany!');
-        }
     }
 }
