@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-require 'application/libraries/Curl.php';
 
 class Cars extends CI_Controller
 {
@@ -10,6 +9,8 @@ class Cars extends CI_Controller
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
 			$table = "cars";
 			// DEFAULT DATA
+			$otomoto_data = $this->back_m->get_one('otomoto_accounts', 3);
+			if (!isset($_SESSION['token'])) $_SESSION['token'] = curl_getToken($otomoto_data->username, $otomoto_data->password);
 			$data = loadDefaultData();
 			$data['rows'] = $this->back_m->get_all($table);
 			echo loadSubViewsBack($this->uri->segment(2), 'index', $data);
@@ -70,18 +71,18 @@ class Cars extends CI_Controller
 		}
 	}
 
-	public function color_form($type, $id = '')
+	public function public($type, $id = '')
 	{
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
-			$table = 'colors';
+			$table = 'cars';
 
 			// DEFAULT DATA
 			$data = loadDefaultData();
-
 			if ($id != '') {
 				$data['value'] = $this->back_m->get_one($table, $id);
+				$data['meta'] = $this->back_m->get_by('otomoto_cars_meta', 'car_id', 'meta_key', $id, 'features');
 			}
-			echo loadSubViewsBack('cars', 'form', $data);
+			redirect('panel/cars');
 		} else {
 			redirect('panel');
 		}
@@ -97,9 +98,5 @@ class Cars extends CI_Controller
 		} else {
 			redirect('panel');
 		}
-	}
-
-	function otomoto_make()
-	{
 	}
 }
