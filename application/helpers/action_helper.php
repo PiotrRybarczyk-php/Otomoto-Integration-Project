@@ -83,6 +83,7 @@ function defaultFormAction($post, $table, $type, $id, bool $photo = FALSE)
     if ($type == 'insert') {
         $CI->back_m->insert($table, $insert);
         $CI->back_m->insert_features($spec);
+        //$CI->back_m->insert_carMeta($cardata);
         $CI->session->set_flashdata('flashdata', 'Rekord został dodany!');
     } else {
         $CI->back_m->update($table, $insert, $id);

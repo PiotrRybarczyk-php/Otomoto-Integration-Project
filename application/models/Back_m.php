@@ -17,6 +17,26 @@ class Back_m extends CI_Model
         return $query->result();
     }
 
+    public function get_car_noFeat($table, $col1, $param1)
+    {
+        $query = $this->db->query('SELECT * FROM ' . $table . ' WHERE ' . $col1 . ' = ' . $param1 . ' AND meta_key != "features"');
+        return $query->result();
+    }
+
+    public function get_car($table, $col1, $param1)
+    {
+        $this->db->where([$col1 => $param1]);
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
+    public function get_models($table, $col1, $id)
+    {
+        $this->db->where([$col1 => $id]);
+        $query = $this->db->get($table);
+        return $query->result();
+    }
+
     public function get_with_limit($table, $limit, $sort = null)
     {
         $this->db->limit($limit);

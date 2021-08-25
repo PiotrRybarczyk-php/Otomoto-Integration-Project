@@ -10,7 +10,7 @@ class Cars extends CI_Controller
 			$table = "cars";
 			// DEFAULT DATA
 			$otomoto_data = $this->back_m->get_one('otomoto_accounts', 3);
-			if (!isset($_SESSION['token'])) $_SESSION['token'] = curl_getToken($otomoto_data->username, $otomoto_data->password);
+			curl_getToken($otomoto_data->username, $otomoto_data->password);
 			$data = loadDefaultData();
 			$data['rows'] = $this->back_m->get_all($table);
 			echo loadSubViewsBack($this->uri->segment(2), 'index', $data);
@@ -34,21 +34,6 @@ class Cars extends CI_Controller
 		}
 	}
 
-	public function color()
-	{
-		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
-			$table = "colors";
-			// DEFAULT DATA
-			$data = loadDefaultData();
-
-			$data['rows'] = $this->back_m->get_all($table);
-
-			echo loadSubViewsBack($this->uri->segment(2), 'color', $data);
-		} else {
-			redirect('panel');
-		}
-	}
-
 	public function form($type, $id = '')
 	{
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
@@ -64,6 +49,11 @@ class Cars extends CI_Controller
 			if ($id != '') {
 				$data['value'] = $this->back_m->get_one($table, $id);
 				$data['meta'] = $this->back_m->get_by('otomoto_cars_meta', 'car_id', 'meta_key', $id, 'features');
+				$array_dump = array();
+				$var_dump = $this->back_m->get_car_noFeat('otomoto_cars_meta', 'car_id', $id);
+				foreach ($var_dump as $item) $array_dump[$item->meta_key] = $item->meta_val;
+				unset($var_dump);
+				$data['car'] = $array_dump;
 			}
 			echo loadSubViewsBack($table, 'form', $data);
 		} else {
@@ -71,7 +61,7 @@ class Cars extends CI_Controller
 		}
 	}
 
-	public function public($type, $id = '')
+	public function otomoto_form($id = '')
 	{
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
 			$table = 'cars';
@@ -79,8 +69,35 @@ class Cars extends CI_Controller
 			// DEFAULT DATA
 			$data = loadDefaultData();
 			if ($id != '') {
-				$data['value'] = $this->back_m->get_one($table, $id);
-				$data['meta'] = $this->back_m->get_by('otomoto_cars_meta', 'car_id', 'meta_key', $id, 'features');
+				$data['car'] = $this->back_m->get_one($table, $id);
+				$data['models'] = $this->back_m->get_models('brand_models', 'brand_id', $data['car']->brand_id);
+				$data['salon'] = $this->back_m->get_one('salons', $data['car']->salon_id);
+				$data['brand'] = $this->back_m->get_one('brands', $data['car']->brand_id);
+				$data['color'] = $this->back_m->get_one('colors', $data['car']->color);
+				$array_dump = array();
+				$var_dump = $this->back_m->get_car_noFeat('otomoto_cars_meta', 'car_id', $id);
+				foreach ($var_dump as $item) $array_dump[$item->meta_key] = $item->meta_val;
+				unset($var_dump);
+				$data['value'] = $array_dump;
+				print_r($data['value']);
+				exit;
+			}
+			echo loadSubViewsBack($table, 'otomoto_form', $data);
+		} else {
+			redirect('panel');
+		}
+	}
+
+	public function post_car($id = '')
+	{
+		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
+
+			// DEFAULT DATA
+			$data = loadDefaultData();
+			if ($id != '') {
+				$data['car'] = $this->back_m->get_car('otomoto_cars_meta', 'car_id', $id);
+				add_car($data['car']);
+				exit;
 			}
 			redirect('panel/cars');
 		} else {
@@ -93,6 +110,42 @@ class Cars extends CI_Controller
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
 
 			defaultFormAction($_POST, $table, $type, $id);
+
+			redirect('panel/' . 'cars');
+		} else {
+			redirect('panel');
+		}
+	}
+
+	public function otomoto_action($table, $id = '')
+	{
+		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
+			$insert = array();
+			$update = array();
+
+			foreach ($_POST as $key => $value) {
+				$temp = $this->back_m->get_by($table, 'car_id', 'meta_key', $id, $key)[0]->id ?? 'blank';
+				if ($key == 'contact') $value = '{"person": "Michał Ignaszak"}';
+				if ($key == 'price') $value = '{"0": "arranged","1": ' . $value . ',"currency": "PLN","gross_net": "gross"}';
+				if ($key != 'salon') {
+					if ($temp == 'blank') {
+						$insert['car_id'] = $id;
+						$insert['meta_key'] = $key;
+						$insert['meta_val'] = $value;
+						print_r('insert:' . $key . " = " . $value);
+						//$this->back_m->insert($table, $insert);
+					} else {
+						$update['car_id'] = $id;
+						$update['meta_key'] = $key;
+						$update['meta_val'] = $value;
+						print_r('update:' . $key . " = " . $value);
+						//$this->back_m->update($table, $update, $temp);
+					}
+				}
+				unset($temp);
+				echo '<br>';
+			}
+			exit;
 
 			redirect('panel/' . 'cars');
 		} else {
