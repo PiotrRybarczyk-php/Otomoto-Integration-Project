@@ -410,6 +410,16 @@
         </div>
       </div>
       <hr>
+      <div class="row no-gutters">
+        <div class="col-12 col-sm-4 col-lg-2">
+          Opis:
+        </div>
+        <div class="col-12 col-sm-8 col-lg-9">
+          <textarea class="summernote" name="description"><?php echo @$value->description; ?></textarea>
+
+        </div>
+      </div>
+      <hr>
       <div class="form-check movable_features">
         <table class="table">
           <tbody>

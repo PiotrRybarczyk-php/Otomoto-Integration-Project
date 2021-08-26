@@ -9,8 +9,6 @@ class Cars extends CI_Controller
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
 			$table = "cars";
 			// DEFAULT DATA
-			$otomoto_data = $this->back_m->get_one('otomoto_accounts', 3);
-			curl_getToken($otomoto_data->username, $otomoto_data->password);
 			$data = loadDefaultData();
 			$data['rows'] = $this->back_m->get_all($table);
 			echo loadSubViewsBack($this->uri->segment(2), 'index', $data);
@@ -79,8 +77,6 @@ class Cars extends CI_Controller
 				foreach ($var_dump as $item) $array_dump[$item->meta_key] = $item->meta_val;
 				unset($var_dump);
 				$data['value'] = $array_dump;
-				print_r($data['value']);
-				exit;
 			}
 			echo loadSubViewsBack($table, 'otomoto_form', $data);
 		} else {
@@ -94,10 +90,13 @@ class Cars extends CI_Controller
 
 			// DEFAULT DATA
 			$data = loadDefaultData();
+			$account = $this->back_m->get_one('otomoto_accounts', $_POST['account']);
+			curl_getToken($account->username, $account->password);
 			if ($id != '') {
-				$data['car'] = $this->back_m->get_car('otomoto_cars_meta', 'car_id', $id);
-				add_car($data['car']);
-				exit;
+				$car = $this->back_m->get_car('otomoto_cars_meta', 'car_id', $id);
+				$coords['latitude'] = $account->latitude;
+				$coords['longitude'] = $account->longitude;
+				$result = add_car($car, $coords);
 			}
 			redirect('panel/cars');
 		} else {
@@ -132,22 +131,35 @@ class Cars extends CI_Controller
 						$insert['car_id'] = $id;
 						$insert['meta_key'] = $key;
 						$insert['meta_val'] = $value;
-						print_r('insert:' . $key . " = " . $value);
-						//$this->back_m->insert($table, $insert);
+						//print_r('insert:' . $key . " = " . $value);
+						$this->back_m->insert($table, $insert);
 					} else {
 						$update['car_id'] = $id;
 						$update['meta_key'] = $key;
 						$update['meta_val'] = $value;
-						print_r('update:' . $key . " = " . $value);
-						//$this->back_m->update($table, $update, $temp);
+						//print_r('update:' . $key . " = " . $value);
+						$this->back_m->update($table, $update, $temp);
 					}
+					//echo '<br>';
 				}
 				unset($temp);
-				echo '<br>';
 			}
-			exit;
+			//exit;
 
-			redirect('panel/' . 'cars');
+			redirect('panel/cars/otomoto_confirm/' . $id);
+		} else {
+			redirect('panel');
+		}
+	}
+	public function otomoto_confirm($id)
+	{
+		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
+			$table = "otomoto_accounts";
+			// DEFAULT DATA
+			$data = loadDefaultData();
+			$data['rows'] = $this->back_m->get_all($table);
+			$data['car_id'] = $id;
+			echo loadSubViewsBack($this->uri->segment(2), 'otomoto_confirm', $data);
 		} else {
 			redirect('panel');
 		}

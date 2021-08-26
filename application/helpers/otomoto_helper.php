@@ -1,12 +1,28 @@
 <?php
-function set_url()
+function set_url($select)
 {
-    if (!isset($_SESSION['otomoto_test'])) $_SESSION['otomoto_test'] = 'https://www.otomoto.pl/api/open';
-    if (!isset($_SESSION['otomoto_auth'])) $_SESSION['otomoto_auth'] = 'https://www.otomoto.pl/api/open/oauth/token';
-    if (!isset($_SESSION['otomoto_advert'])) $_SESSION['otomoto_advert'] = 'https://www.otomoto.pl/api/open/account/adverts';
-    if (!isset($_SESSION['otomoto_regions'])) $_SESSION['otomoto_regions'] = 'https://www.otomoto.pl/api/open/regions';
-    if (!isset($_SESSION['otomoto_cities'])) $_SESSION['otomoto_cities'] = 'https://www.otomoto.pl/api/open/cities';
-    if (!isset($_SESSION['otomoto_districts'])) $_SESSION['otomoto_districts'] = 'https://www.otomoto.pl/api/open/districts';
+    switch ($select) {
+        case 'auth':
+            return 'https://www.otomoto.pl/api/open/oauth/token';
+            break;
+        case 'advert':
+            return 'https://www.otomoto.pl/api/open/account/adverts';
+            break;
+        case 'regions':
+            return 'https://www.otomoto.pl/api/open/regions';
+            break;
+        case 'cities':
+            return 'https://www.otomoto.pl/api/open/cities';
+            break;
+        case 'disctricts':
+            return 'https://www.otomoto.pl/api/open/districts';
+            break;
+        case 'categories':
+            return 'https://www.otomoto.pl/api/open/categories';
+            break;
+        default:
+            return 'https://www.otomoto.pl/api/open';
+    }
 }
 function otomoto_encode($data)
 {
@@ -18,7 +34,7 @@ function otomoto_encode($data)
         if (is_numeric($value)) $string .= $value;
         else {
             if (strlen($value) > 1) {
-                if ($value[0] == '[') $string .= $value;
+                if ($value[0] == '[' || $value[0] == '{') $string .= $value;
                 else $string .= '"' . $value . '"';
             } else $string .= '"' . $value . '"';
         }
@@ -32,24 +48,9 @@ function otomoto_api()
     $api = '329:20db09f3e99a6fba22abdf2c756fe70b';
     return $api;
 }
-function curl_test($url)
-{
-    $ch = curl_init($url);
-    $fp = fopen("test_result.txt", "w");
-
-    curl_setopt($ch, CURLOPT_FILE, $fp);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-
-    curl_exec($ch);
-    if (curl_error($ch)) {
-        fwrite($fp, curl_error($ch));
-    }
-    curl_close($ch);
-    fclose($fp);
-}
 function curl_connection_test($login, $password)
 {
-    $url = $_SESSION['otomoto_auth'];
+    $url = set_url('auth');
     $postRequest = "grant_type=password&username={$login}&password={$password}";
 
     $cURLConnection = curl_init($url);
@@ -64,33 +65,31 @@ function curl_connection_test($login, $password)
 
 function curl_getToken($login, $password)
 {
-    if (!isset($_SESSION['token'])) {
-        $url = $_SESSION['otomoto_auth'];
-        $postRequest = "grant_type=password&username={$login}&password={$password}";
+    $url = set_url('auth');
+    $postRequest = "grant_type=password&username={$login}&password={$password}";
 
-        $cURLConnection = curl_init($url);
-        curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $postRequest);
-        curl_setopt($cURLConnection, CURLOPT_USERPWD, otomoto_api());
-        curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+    $cURLConnection = curl_init($url);
+    curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $postRequest);
+    curl_setopt($cURLConnection, CURLOPT_USERPWD, otomoto_api());
+    curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
 
-        $apiResponse = json_decode(curl_exec($cURLConnection));
+    $apiResponse = json_decode(curl_exec($cURLConnection));
 
-        curl_close($cURLConnection);
+    curl_close($cURLConnection);
 
-        $_SESSION['token'] = $apiResponse->access_token;
-    }
+    $_SESSION['token'] = $apiResponse->access_token;
 }
 
 function display_cars()
 {
     //displays posted cars
-    $url = $_SESSION['otomoto_advert'];
+    $url = set_url('advert');
     $url .= '?limit=10&page=1';
     $token = $_SESSION['token'];
     $cURLConnection = curl_init($url);
     curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Bearer ' . $token,]);
     curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
-    $apiResponse = curl_exec($cURLConnection);
+    $apiResponse = json_decode(curl_exec($cURLConnection));
     curl_close($cURLConnection);
     print_r($apiResponse);
     exit;
@@ -98,7 +97,7 @@ function display_cars()
 
 function get_regions()
 {
-    $url = $_SESSION['otomoto_regions'];
+    $url = set_url('regions');
     $token = $_SESSION['token'];
     $cURLConnection = curl_init($url);
     curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Bearer ' . $token,]);
@@ -111,7 +110,7 @@ function get_regions()
 
 function get_cities()
 {
-    $url = $_SESSION['otomoto_cities'];
+    $url = set_url('cities');
     $token = $_SESSION['token'];
     $cURLConnection = curl_init($url);
     curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Bearer ' . $token,]);
@@ -124,7 +123,7 @@ function get_cities()
 
 function get_districts($id)
 {
-    $url = $_SESSION['otomoto_districts'];
+    $url = set_url('disctricts');
     $url .= '?city_id=' . $id;
     $token = $_SESSION['token'];
     $cURLConnection = curl_init($url);
@@ -136,66 +135,72 @@ function get_districts($id)
     exit;
 }
 
-function add_car($data)
+function get_categories($id)
+{
+    $url = set_url('categories');
+    $url .= '/' . $id;
+    $token = $_SESSION['token'];
+    $cURLConnection = curl_init($url);
+    curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Bearer ' . $token,]);
+    curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+    $apiResponse = curl_exec($cURLConnection);
+    curl_close($cURLConnection);
+    print_r($apiResponse);
+    exit;
+}
+
+function add_car($car_data, $location)
 {
     //script for posting a car advert on otomoto
-    $url = $_SESSION['otomoto_advert'];
+    $url = set_url('advert');
     $token = $_SESSION['token'];
+    $params = array();
+    $temp_array = array();
     $post_array = array();
-    foreach ($data as $item) {
-        $post_array[$item->meta_key] = $item->meta_val;
+    foreach ($car_data as $item) {
+        $temp_array[$item->meta_key] = $item->meta_val;
     }
+    $params['vin'] = $temp_array['vin'];
+    $params['year'] = $temp_array['year'];
+    $params['make'] = $temp_array['make'];
+    $params['model'] = $temp_array['model'];
+    $params['fuel_type'] = $temp_array['fuel_type'];
+    $params['engine_power'] = $temp_array['engine_power'];
+    $params['engine_capacity'] = $temp_array['engine_capacity'];
+    $params['door_count'] = $temp_array['door_count'];
+    $params['gearbox'] = $temp_array['gearbox'];
+    $params['mileage'] = $temp_array['mileage'];
+    $params['body_type'] = $temp_array['body_type'];
+    $params['color'] = $temp_array['color'];
+    $params['colour_type'] = $temp_array['colour_type'];
+    $params['rhd'] = $temp_array['rhd'];
+    $params['country_origin'] = $temp_array['country_origin'];
+    $params['date_registration'] = $temp_array['date_registration'];
+    $params['registered'] = $temp_array['registered'];
+    $params['nr_seats'] = $temp_array['nr_seats'];
+    $params['no_accident'] = $temp_array['no_accident'];
+    $params['service_record'] = $temp_array['service_record'];
+    $params['transmission'] = $temp_array['transmission'];
+    $params['price'] = $temp_array['price'];
+    //$params['video'] = $temp_array['video'];
+    $params['features'] = $temp_array['features'];
+    $post_array['title'] = $temp_array['title'];
+    $post_array['description'] = $temp_array['description'];
+    $post_array['category_id'] = $temp_array['category_id'];
+    $post_array['region_id'] = 1;
+    $post_array['coordinates'] = '{"latitude": ' . $location['latitude'] . ',"longitude": ' . $location['longitude'] . '}';
+    $post_array['contact'] = $temp_array['contact'];
+    $post_array['new_used'] = $temp_array['new_used'];
+    $post_array['params'] = otomoto_encode($params);
+    //$post_array['advertiser_type'] = 'private';
     $post_string = otomoto_encode($post_array);
-    $test_string = '{
-        "title": "Advert title",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "category_id": 29,
-        "region_id": 1,
-        "city_id": 1,
-        "district_id": 1,
-        "coordinates":
-        {
-            "latitude": 52.39255,
-            "longitude": 16.86718
-        },
-        "contact":
-        {
-            "person": "John Doe"
-        },
-        "params":
-        {
-            "vin": "11111111111111111",
-            "year": 2018,
-            "make": "ford",
-            "model": "focus",
-            "fuel_type": "petrol",
-            "engine_power": "86",
-            "engine_capacity": "1596",
-            "door_count": 4,
-            "gearbox": "manual",
-            "generation": "gen-mk4-2018",
-            "version": "ver-1-6-gold-x",
-            "mileage": 199000,
-            "fuel_type": "petrol",
-            "body_type": "sedan",
-            "color": "white",
-            "price":
-            {
-                "0": "arranged",
-                "1": 20000,
-                "currency": "PLN",
-                "gross_net": "gross"
-            },
-            "video": "https://www.youtube.com/watch?v=code"
-        },
-        "advertiser_type": "private"
-    }';
+    //print_r($post_string);
+    //exit;
     $cURLConnection = curl_init($url);
     curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Bearer ' . $token,]);
     curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $post_string);
     curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
     $apiResponse = curl_exec($cURLConnection);
     curl_close($cURLConnection);
-    print_r($apiResponse);
-    exit;
+    return $apiResponse;
 }
