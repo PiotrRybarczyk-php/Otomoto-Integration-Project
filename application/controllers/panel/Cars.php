@@ -23,10 +23,56 @@ class Cars extends CI_Controller
 			// DEFAULT DATA
 			$data = loadDefaultData();
 
-			$data['project'] = $this->back_m->get_one('cars', $id);
-			$data['files'] = $this->back_m->get_car_images('car_files', $id);
+			$data['car'] = $this->back_m->get_one('cars', $id);
+			$data['pictures'] = $this->back_m->get_car_images('car_files', $id);
 
 			echo loadSubViewsBack($this->uri->segment(2), 'gallery', $data);
+		} else {
+			redirect('panel');
+		}
+	}
+
+	public function action_gallery($id)
+	{
+		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
+			$now = date('Y-m-d');
+			$files = $_FILES;
+			$cpt = count($_FILES['gallery']['name']);
+			for ($i = 0; $i < $cpt; $i++) {
+				/*if (!is_dir('files/otomoto_images_export')) {
+					mkdir('./files/otomoto_images_export', 0777, TRUE);
+				}*/
+				$config['upload_path'] = '../files/otomoto_images_export';
+				$config['allowed_types'] = '*';
+				$config['max_size'] = 0;
+				$config['max_width'] = 0;
+				$config['max_height'] = 0;
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+
+				$name = $files['gallery']['name'][$i];
+				$name = slug__photo($name);
+				$_FILES['gallery']['name'] = $name;
+				$_FILES['gallery']['type'] = $files['gallery']['type'][$i];
+				$_FILES['gallery']['tmp_name'] = $files['gallery']['tmp_name'][$i];
+				$_FILES['gallery']['error'] = $files['gallery']['error'][$i];
+				$_FILES['gallery']['size'] = $files['gallery']['size'][$i];
+				if (!($this->upload->do_upload('gallery')) || $files['gallery']['error'][$i] != 0) {
+					echo $this->upload->display_errors();
+				} else {
+					$data = $this->upload->data();
+					$insert['filename'] = $name;
+					$insert['car_id'] = $id;
+					$insert['type'] = 'image';
+					$insert['folder'] = 'otomoto_images_export';
+					if ($data['image_width'] > 1440) {
+						resizeImg($data['file_name'], $now, '1440');
+					}
+					$this->back_m->insert('car_files', $insert);
+				}
+			}
+			$this->session->set_flashdata('flashdata', 'Rekord został dodany!');
+			redirect('panel/cars/gallery/' . $id);
 		} else {
 			redirect('panel');
 		}
@@ -45,6 +91,7 @@ class Cars extends CI_Controller
 			$data['users'] = $this->back_m->get_all('user');
 
 			if ($id != '') {
+				$this->back_m->fix_features($id);
 				$data['value'] = $this->back_m->get_one($table, $id);
 				$data['meta'] = $this->back_m->get_by('otomoto_cars_meta', 'car_id', 'meta_key', $id, 'features');
 				$array_dump = array();
@@ -93,10 +140,27 @@ class Cars extends CI_Controller
 			$account = $this->back_m->get_one('otomoto_accounts', $_POST['account']);
 			curl_getToken($account->username, $account->password);
 			if ($id != '') {
+				//adding image collection
+				$collection_id = $this->back_m->get_by('otomoto_cars_meta', 'car_id', 'meta_key', $id, 'image_collection_id');
+				$pictures = $this->back_m->get_car_images('car_files', $id);
+				$gallery_id = create_collection($pictures);
+				$meta_input = array('car_id' => $id, 'meta_key' => 'image_collection_id', 'meta_val' => $gallery_id['id']);
+				if (empty($collection_id)) $this->back_m->insert('otomoto_cars_meta', $meta_input);
+				else $this->back_m->update('otomoto_cars_meta', $meta_input, $collection_id[0]->id);
+				unset($meta_input);
+				//adding car advert
 				$car = $this->back_m->get_car('otomoto_cars_meta', 'car_id', $id);
 				$coords['latitude'] = $account->latitude;
 				$coords['longitude'] = $account->longitude;
 				$result = add_car($car, $coords);
+				if (isset($result->id)) {
+					activate_car($result->id);
+					$meta_input = array('otomoto_auction_id' => $result->id, 'otomoto_auction_url' => $result->url, 'otomoto_publish' => 1);
+					$this->back_m->update('cars', $meta_input, $id);
+					$this->session->set_flashdata('flashdata', 'Sukces! Auto Wystawione na Otomoto!');
+				} else {
+					$this->session->set_flashdata('flashdata', 'Nie Udało się wystawić samochodu na Otomoto!');
+				}
 			}
 			redirect('panel/cars');
 		} else {

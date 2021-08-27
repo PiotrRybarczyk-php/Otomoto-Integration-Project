@@ -8,7 +8,7 @@ else $city = 27;
 $body_type['Miejskie'] = 'city-car';
 $body_type['Crossover'] = 'suv';
 $body_type['SUV'] = 'suv';
-$body_type['Kombi'] = 'combi';
+$body_type['Combi'] = 'combi';
 $body_type['Hatchback'] = 'compact';
 $body_type['MPV'] = 'minivan';
 $body_type['Sedan'] = 'sedan';
@@ -62,7 +62,7 @@ $body_type['Pozostałe'] = 'compact';
               Marka:
             </div>
             <div class="col-12 col-sm-8 col-lg-9">
-              <input class="form-control" type="text" name="make" value="<?= @$brand->name; ?>" readonly="readonly">
+              <input class="form-control" style="text-transform:lowercase" type="text" name="make" value="<?= @$brand->name; ?>" readonly="readonly">
             </div>
           </div>
           <div class="row no-gutters">
@@ -244,11 +244,11 @@ $body_type['Pozostałe'] = 'compact';
       <hr>
       <div class="row no-gutters">
         <div class="col-12 col-sm-4 col-lg-2">
-          Opis:
+          Opis Otomoto:
         </div>
         <div class="col-12 col-sm-8 col-lg-9">
-          <div><?php echo $car->description; ?></div>
-          <input type="hidden" name="description" value="<?php echo $desc; ?>">
+          <textarea style="width:100%;min-height:300px;" name="description"><?php echo @$value['description']; ?></textarea>
+
         </div>
       </div>
       <hr>

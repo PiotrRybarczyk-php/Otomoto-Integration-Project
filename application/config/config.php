@@ -5,6 +5,8 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 
 $config['base_url'] = strpos($actual_link, 'localhost') > 0 ? $actual_link . 'ignaszak_nowy' : $actual_link;
 
+//$config['base_url'] = $actual_link . 'webroot/otomoto_export';
+
 $config['uri_protocol']    = 'REQUEST_URI';
 
 $config['url_suffix'] = '';

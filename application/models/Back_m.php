@@ -96,9 +96,9 @@ class Back_m extends CI_Model
         return $query;
     }
 
-    public function insert_features($features)
+    public function insert_features($features, $id)
     {
-        $data = array('meta_key' => 'features', 'meta_val' => $features);
+        $data = array('car_id' => $id, 'meta_key' => 'features', 'meta_val' => $features);
         //$data = $this->security->xss_clean($data);
         $query = $this->db->insert('otomoto_cars_meta', $data);
         return $query;
@@ -117,6 +117,14 @@ class Back_m extends CI_Model
         $data = array('meta_key' => 'features', 'meta_val' => $features);
         $this->db->where(['car_id' => $id]);
         $this->db->where(['meta_key' => 'features']);
+        $query = $this->db->update('otomoto_cars_meta', $data);
+        return $query;
+    }
+
+    public function fix_features($id)
+    {
+        $data = array('car_id' => $id);
+        $this->db->where(['car_id' => 0]);
         $query = $this->db->update('otomoto_cars_meta', $data);
         return $query;
     }

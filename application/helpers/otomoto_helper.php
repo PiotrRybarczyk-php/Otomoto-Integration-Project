@@ -20,6 +20,9 @@ function set_url($select)
         case 'categories':
             return 'https://www.otomoto.pl/api/open/categories';
             break;
+        case 'gallery':
+            return 'https://www.otomoto.pl/api/open/imageCollections';
+            break;
         default:
             return 'https://www.otomoto.pl/api/open';
     }
@@ -149,6 +152,40 @@ function get_categories($id)
     exit;
 }
 
+function create_collection($images)
+{
+    $temp_collection = array();
+    for ($i = 0; $i < count($images); $i++) {
+        $temp_collection[strval($i + 1)] = 'https://ignaszak.pl/files/' . $images[$i]->folder . '/' . $images[$i]->filename;
+    }
+    $post_string = otomoto_encode($temp_collection);
+    $url = set_url('gallery');
+    $token = $_SESSION['token'];
+    $cURLConnection = curl_init($url);
+    curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Bearer ' . $token,]);
+    curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $post_string);
+    curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+    $apijson = curl_exec($cURLConnection);
+    $apiResponse = json_decode($apijson, true);
+    curl_close($cURLConnection);
+    return $apiResponse;
+}
+
+function activate_car($id)
+{
+    //activate car's advert on otomoto
+    $url = set_url('advert');
+    $url .= '/' . $id . '/activate';
+    $token = $_SESSION['token'];
+    $cURLConnection = curl_init($url);
+    curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Bearer ' . $token,]);
+    curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, '{}');
+    curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+    $apiResponse = json_decode(curl_exec($cURLConnection));
+    curl_close($cURLConnection);
+    return $apiResponse;
+}
+
 function add_car($car_data, $location)
 {
     //script for posting a car advert on otomoto
@@ -192,7 +229,7 @@ function add_car($car_data, $location)
     $post_array['contact'] = $temp_array['contact'];
     $post_array['new_used'] = $temp_array['new_used'];
     $post_array['params'] = otomoto_encode($params);
-    //$post_array['advertiser_type'] = 'private';
+    $post_array['image_collection_id'] = $temp_array['image_collection_id'];
     $post_string = otomoto_encode($post_array);
     //print_r($post_string);
     //exit;
@@ -200,7 +237,7 @@ function add_car($car_data, $location)
     curl_setopt($cURLConnection, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Authorization: Bearer ' . $token,]);
     curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $post_string);
     curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
-    $apiResponse = curl_exec($cURLConnection);
+    $apiResponse = json_decode(curl_exec($cURLConnection));
     curl_close($cURLConnection);
     return $apiResponse;
 }

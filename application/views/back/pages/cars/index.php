@@ -55,7 +55,9 @@
                   <td class="align-middle"><?= $car_info[4]; ?></td>
                   <td class="align-middle"><?= $car_info[5]; ?></td>
                   <td class="text-right">
-                    <a href="<?php echo base_url(); ?>panel/<?= $this->uri->segment(2); ?>/otomoto_form/<?php echo $value->id; ?>" class="btn btn-sm btn-secondary"><i class="icon ion-images mg-r-10"></i> Edycja Otomoto</a>
+                    <a href="<?php echo base_url(); ?>panel/<?= $this->uri->segment(2); ?>/gallery/<?php echo $value->id; ?>" class="btn btn-sm btn-secondary"><i class="icon ion-images mg-r-10"></i> Galeria</a>
+                    <a href="<?php echo base_url(); ?>panel/<?= $this->uri->segment(2); ?>/otomoto_form/<?php echo $value->id; ?>" class="btn btn-sm btn-secondary"><i class="icon ion-compose mg-r-10"></i> Edycja Otomoto</a>
+                    <br>
                     <a href="<?php echo base_url(); ?>panel/<?php echo $this->uri->segment(2); ?>/form/update/<?php echo $value->id; ?>" class="btn btn-sm btn-info"><i class="icon ion-compose mg-r-10"></i> Edytuj</a>
                     <a href="<?php echo base_url(); ?>panel/settings/delete/<?php echo $this->uri->segment(2); ?>/<?php echo $value->id; ?>" class="btn btn-sm btn-secondary" onclick="return confirm('Czy na pewno chcesz usunąć <?php echo $value->title; ?>? #<?php echo $value->id; ?>')">
                       <i class="fa fa-close mg-r-10"></i> Usuń

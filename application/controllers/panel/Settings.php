@@ -164,7 +164,7 @@ class Settings extends CI_Controller
 				}
 			}
 			$this->session->set_flashdata('flashdata', 'Rekord został dodany!');
-			redirect('panel/settings/gallery/' . $table . '/' . $id);
+			redirect('panel/cars/gallery/' . $id);
 		} else {
 			redirect('panel');
 		}
@@ -184,7 +184,7 @@ class Settings extends CI_Controller
 	{
 		if (checkAccess($access_group = ['admin', 'handlowiec'], $_SESSION['rola'])) {
 			$this->session->set_flashdata('flashdata', 'Rekord został usunięty!');
-			$this->back_m->delete('gallery', $id);
+			$this->back_m->delete($table, $id);
 			redirect($_SERVER['HTTP_REFERER']);
 		} else {
 			redirect('panel');

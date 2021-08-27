@@ -426,19 +426,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresabs"><input <?php if (!empty(strpos($meta[0]->meta_val, "abs"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresabs" value="abs">
+                <label class="form-check-label" for="checkbox_featuresabs"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "abs"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresabs" value="abs">
                   ABS</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featurescd"><input <?php if (!empty(strpos($meta[0]->meta_val, "cd"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurescd" value="cd">
+                <label class="form-check-label" for="checkbox_featurescd"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "cd"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurescd" value="cd">
                   CD</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featurescentral-lock"><input <?php if (!empty(strpos($meta[0]->meta_val, "central-lock"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurescentral-lock" value="central-lock">
+                <label class="form-check-label" for="checkbox_featurescentral-lock"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "central-lock"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurescentral-lock" value="central-lock">
                   Centralny zamek</label>
               </td>
 
@@ -446,19 +446,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresfront-electric-windows"><input <?php if (!empty(strpos($meta[0]->meta_val, "front-electric-windows"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-electric-windows" value="front-electric-windows">
+                <label class="form-check-label" for="checkbox_featuresfront-electric-windows"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "front-electric-windows"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-electric-windows" value="front-electric-windows">
                   Elektryczne szyby przednie</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featureselectronic-rearview-mirrors"><input <?php if (!empty(strpos($meta[0]->meta_val, "electronic-rearview-mirrors"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectronic-rearview-mirrors" value="electronic-rearview-mirrors">
+                <label class="form-check-label" for="checkbox_featureselectronic-rearview-mirrors"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "electronic-rearview-mirrors"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectronic-rearview-mirrors" value="electronic-rearview-mirrors">
                   Elektrycznie ustawiane lusterka</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featureselectronic-immobiliser"><input <?php if (!empty(strpos($meta[0]->meta_val, "electronic-immobiliser"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectronic-immobiliser" value="electronic-immobiliser">
+                <label class="form-check-label" for="checkbox_featureselectronic-immobiliser"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "electronic-immobiliser"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectronic-immobiliser" value="electronic-immobiliser">
                   Immobilizer</label>
               </td>
 
@@ -466,19 +466,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresfront-airbags"><input <?php if (!empty(strpos($meta[0]->meta_val, "front-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-airbags" value="front-airbags">
+                <label class="form-check-label" for="checkbox_featuresfront-airbags"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "front-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-airbags" value="front-airbags">
                   Poduszka powietrzna kierowcy</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresfront-passenger-airbags"><input <?php if (!empty(strpos($meta[0]->meta_val, "front-passenger-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-passenger-airbags" value="front-passenger-airbags">
+                <label class="form-check-label" for="checkbox_featuresfront-passenger-airbags"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "front-passenger-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-passenger-airbags" value="front-passenger-airbags">
                   Poduszka powietrzna pasażera</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresoriginal-radio"><input <?php if (!empty(strpos($meta[0]->meta_val, "original-radio"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresoriginal-radio" value="original-radio">
+                <label class="form-check-label" for="checkbox_featuresoriginal-radio"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "original-radio"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresoriginal-radio" value="original-radio">
                   Radio fabryczne</label>
               </td>
 
@@ -486,19 +486,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresassisted-steering"><input <?php if (!empty(strpos($meta[0]->meta_val, "assisted-steering"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresassisted-steering" value="assisted-steering">
+                <label class="form-check-label" for="checkbox_featuresassisted-steering"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "assisted-steering"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresassisted-steering" value="assisted-steering">
                   Wspomaganie kierownicy</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresalarm"><input <?php if (!empty(strpos($meta[0]->meta_val, "alarm"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresalarm" value="alarm">
+                <label class="form-check-label" for="checkbox_featuresalarm"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "alarm"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresalarm" value="alarm">
                   Alarm</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresalloy-wheels"><input <?php if (!empty(strpos($meta[0]->meta_val, "alloy-wheels"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresalloy-wheels" value="alloy-wheels">
+                <label class="form-check-label" for="checkbox_featuresalloy-wheels"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "alloy-wheels"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresalloy-wheels" value="alloy-wheels">
                   Alufelgi</label>
               </td>
 
@@ -506,19 +506,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresasr"><input <?php if (!empty(strpos($meta[0]->meta_val, "asr"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresasr" value="asr">
+                <label class="form-check-label" for="checkbox_featuresasr"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "asr"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresasr" value="asr">
                   ASR (kontrola trakcji)</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featurespark-assist"><input <?php if (!empty(strpos($meta[0]->meta_val, "park-assist"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurespark-assist" value="park-assist">
+                <label class="form-check-label" for="checkbox_featurespark-assist"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "park-assist"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurespark-assist" value="park-assist">
                   Asystent parkowania</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featureslane-assist"><input <?php if (!empty(strpos($meta[0]->meta_val, "lane-assist"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureslane-assist" value="lane-assist">
+                <label class="form-check-label" for="checkbox_featureslane-assist"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "lane-assist"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureslane-assist" value="lane-assist">
                   Asystent pasa ruchu</label>
               </td>
 
@@ -526,19 +526,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresbluetooth"><input <?php if (!empty(strpos($meta[0]->meta_val, "bluetooth"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresbluetooth" value="bluetooth">
+                <label class="form-check-label" for="checkbox_featuresbluetooth"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "bluetooth"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresbluetooth" value="bluetooth">
                   Bluetooth</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresautomatic-wipers"><input <?php if (!empty(strpos($meta[0]->meta_val, "automatic-wipers"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresautomatic-wipers" value="automatic-wipers">
+                <label class="form-check-label" for="checkbox_featuresautomatic-wipers"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "automatic-wipers"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresautomatic-wipers" value="automatic-wipers">
                   Czujnik deszczu</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresblind-spot-sensor"><input <?php if (!empty(strpos($meta[0]->meta_val, "blind-spot-sensor"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresblind-spot-sensor" value="blind-spot-sensor">
+                <label class="form-check-label" for="checkbox_featuresblind-spot-sensor"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "blind-spot-sensor"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresblind-spot-sensor" value="blind-spot-sensor">
                   Czujnik martwego pola</label>
               </td>
 
@@ -546,19 +546,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresautomatic-lights"><input <?php if (!empty(strpos($meta[0]->meta_val, "automatic-lights"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresautomatic-lights" value="automatic-lights">
+                <label class="form-check-label" for="checkbox_featuresautomatic-lights"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "automatic-lights"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresautomatic-lights" value="automatic-lights">
                   Czujnik zmierzchu</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresboth-parking-sensors"><input <?php if (!empty(strpos($meta[0]->meta_val, "both-parking-sensors"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresboth-parking-sensors" value="both-parking-sensors">
+                <label class="form-check-label" for="checkbox_featuresboth-parking-sensors"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "both-parking-sensors"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresboth-parking-sensors" value="both-parking-sensors">
                   Czujniki parkowania przednie</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresrear-parking-sensors"><input <?php if (!empty(strpos($meta[0]->meta_val, "rear-parking-sensors"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrear-parking-sensors" value="rear-parking-sensors">
+                <label class="form-check-label" for="checkbox_featuresrear-parking-sensors"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "rear-parking-sensors"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrear-parking-sensors" value="rear-parking-sensors">
                   Czujniki parkowania tylne</label>
               </td>
 
@@ -566,19 +566,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featurespanoramic-sunroof"><input <?php if (!empty(strpos($meta[0]->meta_val, "panoramic-sunroof"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurespanoramic-sunroof" value="panoramic-sunroof">
+                <label class="form-check-label" for="checkbox_featurespanoramic-sunroof"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "panoramic-sunroof"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurespanoramic-sunroof" value="panoramic-sunroof">
                   Dach panoramiczny</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featureselectric-exterior-mirror"><input <?php if (!empty(strpos($meta[0]->meta_val, "electric-exterior-mirror"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectric-exterior-mirror" value="electric-exterior-mirror">
+                <label class="form-check-label" for="checkbox_featureselectric-exterior-mirror"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "electric-exterior-mirror"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectric-exterior-mirror" value="electric-exterior-mirror">
                   Elektrochromatyczne lusterka boczne</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featureselectric-interior-mirror"><input <?php if (!empty(strpos($meta[0]->meta_val, "electric-interior-mirror"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectric-interior-mirror" value="electric-interior-mirror">
+                <label class="form-check-label" for="checkbox_featureselectric-interior-mirror"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "electric-interior-mirror"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectric-interior-mirror" value="electric-interior-mirror">
                   Elektrochromatyczne lusterko wsteczne</label>
               </td>
 
@@ -586,19 +586,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresrear-electric-windows"><input <?php if (!empty(strpos($meta[0]->meta_val, "rear-electric-windows"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrear-electric-windows" value="rear-electric-windows">
+                <label class="form-check-label" for="checkbox_featuresrear-electric-windows"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "rear-electric-windows"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrear-electric-windows" value="rear-electric-windows">
                   Elektryczne szyby tylne</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featureselectric-adjustable-seats"><input <?php if (!empty(strpos($meta[0]->meta_val, "electric-adjustable-seats"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectric-adjustable-seats" value="electric-adjustable-seats">
+                <label class="form-check-label" for="checkbox_featureselectric-adjustable-seats"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "electric-adjustable-seats"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureselectric-adjustable-seats" value="electric-adjustable-seats">
                   Elektrycznie ustawiane fotele</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresesp"><input <?php if (!empty(strpos($meta[0]->meta_val, "esp"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresesp" value="esp">
+                <label class="form-check-label" for="checkbox_featuresesp"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "esp"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresesp" value="esp">
                   ESP (stabilizacja toru jazdy)</label>
               </td>
 
@@ -606,19 +606,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresaux-in"><input <?php if (!empty(strpos($meta[0]->meta_val, "aux-in"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresaux-in" value="aux-in">
+                <label class="form-check-label" for="checkbox_featuresaux-in"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "aux-in"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresaux-in" value="aux-in">
                   Gniazdo AUX</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuressd-socket"><input <?php if (!empty(strpos($meta[0]->meta_val, "sd-socket"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuressd-socket" value="sd-socket">
+                <label class="form-check-label" for="checkbox_featuressd-socket"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "sd-socket"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuressd-socket" value="sd-socket">
                   Gniazdo SD</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresusb-socket"><input <?php if (!empty(strpos($meta[0]->meta_val, "usb-socket"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresusb-socket" value="usb-socket">
+                <label class="form-check-label" for="checkbox_featuresusb-socket"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "usb-socket"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresusb-socket" value="usb-socket">
                   Gniazdo USB</label>
               </td>
 
@@ -626,19 +626,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featurestowing-hook"><input <?php if (!empty(strpos($meta[0]->meta_val, "towing-hook"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurestowing-hook" value="towing-hook">
+                <label class="form-check-label" for="checkbox_featurestowing-hook"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "towing-hook"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurestowing-hook" value="towing-hook">
                   Hak</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featureshead-display"><input <?php if (!empty(strpos($meta[0]->meta_val, "head-display"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureshead-display" value="head-display">
+                <label class="form-check-label" for="checkbox_featureshead-display"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "head-display"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featureshead-display" value="head-display">
                   HUD (wyświetlacz przezierny)</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresisofix"><input <?php if (!empty(strpos($meta[0]->meta_val, "isofix"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresisofix" value="isofix">
+                <label class="form-check-label" for="checkbox_featuresisofix"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "isofix"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresisofix" value="isofix">
                   Isofix</label>
               </td>
 
@@ -646,19 +646,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresrearview-camera"><input <?php if (!empty(strpos($meta[0]->meta_val, "rearview-camera"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrearview-camera" value="rearview-camera">
+                <label class="form-check-label" for="checkbox_featuresrearview-camera"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "rearview-camera"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrearview-camera" value="rearview-camera">
                   Kamera cofania</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresautomatic-air-conditioning"><input <?php if (!empty(strpos($meta[0]->meta_val, "automatic-air-conditioning"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresautomatic-air-conditioning" value="automatic-air-conditioning">
+                <label class="form-check-label" for="checkbox_featuresautomatic-air-conditioning"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "automatic-air-conditioning"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresautomatic-air-conditioning" value="automatic-air-conditioning">
                   Klimatyzacja automatyczna</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresquad-air-conditioning"><input <?php if (!empty(strpos($meta[0]->meta_val, "quad-air-conditioning"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresquad-air-conditioning" value="quad-air-conditioning">
+                <label class="form-check-label" for="checkbox_featuresquad-air-conditioning"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "quad-air-conditioning"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresquad-air-conditioning" value="quad-air-conditioning">
                   Klimatyzacja czterostrefowa</label>
               </td>
 
@@ -666,19 +666,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresdual-air-conditioning"><input <?php if (!empty(strpos($meta[0]->meta_val, "dual-air-conditioning"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresdual-air-conditioning" value="dual-air-conditioning">
+                <label class="form-check-label" for="checkbox_featuresdual-air-conditioning"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "dual-air-conditioning"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresdual-air-conditioning" value="dual-air-conditioning">
                   Klimatyzacja dwustrefowa</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresair-conditioning"><input <?php if (!empty(strpos($meta[0]->meta_val, "air-conditioning"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresair-conditioning" value="air-conditioning">
+                <label class="form-check-label" for="checkbox_featuresair-conditioning"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "air-conditioning"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresair-conditioning" value="air-conditioning">
                   Klimatyzacja manualna</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresonboard-computer"><input <?php if (!empty(strpos($meta[0]->meta_val, "onboard-computer"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresonboard-computer" value="onboard-computer">
+                <label class="form-check-label" for="checkbox_featuresonboard-computer"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "onboard-computer"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresonboard-computer" value="onboard-computer">
                   Komputer pokładowy</label>
               </td>
 
@@ -686,19 +686,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresside-window-airbags"><input <?php if (!empty(strpos($meta[0]->meta_val, "side-window-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresside-window-airbags" value="side-window-airbags">
+                <label class="form-check-label" for="checkbox_featuresside-window-airbags"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "side-window-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresside-window-airbags" value="side-window-airbags">
                   Kurtyny powietrzne</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresshift-paddles"><input <?php if (!empty(strpos($meta[0]->meta_val, "shift-paddles"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresshift-paddles" value="shift-paddles">
+                <label class="form-check-label" for="checkbox_featuresshift-paddles"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "shift-paddles"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresshift-paddles" value="shift-paddles">
                   Łopatki zmiany biegów</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresmp3"><input <?php if (!empty(strpos($meta[0]->meta_val, "mp3"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresmp3" value="mp3">
+                <label class="form-check-label" for="checkbox_featuresmp3"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "mp3"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresmp3" value="mp3">
                   MP3</label>
               </td>
 
@@ -706,19 +706,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresgps"><input <?php if (!empty(strpos($meta[0]->meta_val, "gps"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresgps" value="gps">
+                <label class="form-check-label" for="checkbox_featuresgps"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "gps"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresgps" value="gps">
                   Nawigacja GPS</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresdvd"><input <?php if (!empty(strpos($meta[0]->meta_val, "dvd"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresdvd" value="dvd">
+                <label class="form-check-label" for="checkbox_featuresdvd"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "dvd"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresdvd" value="dvd">
                   Odtwarzacz DVD</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresspeed-limiter"><input <?php if (!empty(strpos($meta[0]->meta_val, "speed-limiter"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresspeed-limiter" value="speed-limiter">
+                <label class="form-check-label" for="checkbox_featuresspeed-limiter"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "speed-limiter"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresspeed-limiter" value="speed-limiter">
                   Ogranicznik prędkości</label>
               </td>
 
@@ -726,19 +726,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresauxiliary-heating"><input <?php if (!empty(strpos($meta[0]->meta_val, "auxiliary-heating"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresauxiliary-heating" value="auxiliary-heating">
+                <label class="form-check-label" for="checkbox_featuresauxiliary-heating"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "auxiliary-heating"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresauxiliary-heating" value="auxiliary-heating">
                   Ogrzewanie postojowe</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresheated-windshield"><input <?php if (!empty(strpos($meta[0]->meta_val, "heated-windshield"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresheated-windshield" value="heated-windshield">
+                <label class="form-check-label" for="checkbox_featuresheated-windshield"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "heated-windshield"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresheated-windshield" value="heated-windshield">
                   Podgrzewana przednia szyba</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresheated-rearview-mirrors"><input <?php if (!empty(strpos($meta[0]->meta_val, "heated-rearview-mirrors"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresheated-rearview-mirrors" value="heated-rearview-mirrors">
+                <label class="form-check-label" for="checkbox_featuresheated-rearview-mirrors"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "heated-rearview-mirrors"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresheated-rearview-mirrors" value="heated-rearview-mirrors">
                   Podgrzewane lusterka boczne</label>
               </td>
 
@@ -746,19 +746,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresfront-heated-seats"><input <?php if (!empty(strpos($meta[0]->meta_val, "front-heated-seats"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-heated-seats" value="front-heated-seats">
+                <label class="form-check-label" for="checkbox_featuresfront-heated-seats"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "front-heated-seats"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-heated-seats" value="front-heated-seats">
                   Podgrzewane przednie siedzenia</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresrear-heated-seats"><input <?php if (!empty(strpos($meta[0]->meta_val, "rear-heated-seats"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrear-heated-seats" value="rear-heated-seats">
+                <label class="form-check-label" for="checkbox_featuresrear-heated-seats"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "rear-heated-seats"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrear-heated-seats" value="rear-heated-seats">
                   Podgrzewane tylne siedzenia</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresdriver-knee-airbag"><input <?php if (!empty(strpos($meta[0]->meta_val, "driver-knee-airbag"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresdriver-knee-airbag" value="driver-knee-airbag">
+                <label class="form-check-label" for="checkbox_featuresdriver-knee-airbag"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "driver-knee-airbag"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresdriver-knee-airbag" value="driver-knee-airbag">
                   Poduszka powietrzna chroniąca kolana</label>
               </td>
 
@@ -766,19 +766,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresfront-side-airbags"><input <?php if (!empty(strpos($meta[0]->meta_val, "front-side-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-side-airbags" value="front-side-airbags">
+                <label class="form-check-label" for="checkbox_featuresfront-side-airbags"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "front-side-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfront-side-airbags" value="front-side-airbags">
                   Poduszki boczne przednie</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresrear-passenger-airbags"><input <?php if (!empty(strpos($meta[0]->meta_val, "rear-passenger-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrear-passenger-airbags" value="rear-passenger-airbags">
+                <label class="form-check-label" for="checkbox_featuresrear-passenger-airbags"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "rear-passenger-airbags"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresrear-passenger-airbags" value="rear-passenger-airbags">
                   Poduszki boczne tylne</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featurestinted-windows"><input <?php if (!empty(strpos($meta[0]->meta_val, "tinted-windows"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurestinted-windows" value="tinted-windows">
+                <label class="form-check-label" for="checkbox_featurestinted-windows"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "tinted-windows"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurestinted-windows" value="tinted-windows">
                   Przyciemniane szyby</label>
               </td>
 
@@ -786,19 +786,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresradio"><input <?php if (!empty(strpos($meta[0]->meta_val, "radio"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresradio" value="radio">
+                <label class="form-check-label" for="checkbox_featuresradio"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "radio"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresradio" value="radio">
                   Radio niefabryczne</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresadjustable-suspension"><input <?php if (!empty(strpos($meta[0]->meta_val, "adjustable-suspension"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresadjustable-suspension" value="adjustable-suspension">
+                <label class="form-check-label" for="checkbox_featuresadjustable-suspension"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "adjustable-suspension"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresadjustable-suspension" value="adjustable-suspension">
                   Regulowane zawieszenie</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresroof-bars"><input <?php if (!empty(strpos($meta[0]->meta_val, "roof-bars"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresroof-bars" value="roof-bars">
+                <label class="form-check-label" for="checkbox_featuresroof-bars"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "roof-bars"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresroof-bars" value="roof-bars">
                   Relingi dachowe</label>
               </td>
 
@@ -806,19 +806,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuressystem-start-stop"><input <?php if (!empty(strpos($meta[0]->meta_val, "system-start-stop"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuressystem-start-stop" value="system-start-stop">
+                <label class="form-check-label" for="checkbox_featuressystem-start-stop"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "system-start-stop"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuressystem-start-stop" value="system-start-stop">
                   System Start-Stop</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuressunroof"><input <?php if (!empty(strpos($meta[0]->meta_val, "sunroof"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuressunroof" value="sunroof">
+                <label class="form-check-label" for="checkbox_featuressunroof"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "sunroof"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuressunroof" value="sunroof">
                   Szyberdach</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresdaytime-lights"><input <?php if (!empty(strpos($meta[0]->meta_val, "daytime-lights"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresdaytime-lights" value="daytime-lights">
+                <label class="form-check-label" for="checkbox_featuresdaytime-lights"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "daytime-lights"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresdaytime-lights" value="daytime-lights">
                   Światła do jazdy dziennej</label>
               </td>
 
@@ -826,19 +826,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresleds"><input <?php if (!empty(strpos($meta[0]->meta_val, "leds"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresleds" value="leds">
+                <label class="form-check-label" for="checkbox_featuresleds"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "leds"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresleds" value="leds">
                   Światła LED</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresfog-lights"><input <?php if (!empty(strpos($meta[0]->meta_val, "fog-lights"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfog-lights" value="fog-lights">
+                <label class="form-check-label" for="checkbox_featuresfog-lights"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "fog-lights"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresfog-lights" value="fog-lights">
                   Światła przeciwmgielne</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresxenon-lights"><input <?php if (!empty(strpos($meta[0]->meta_val, "xenon-lights"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresxenon-lights" value="xenon-lights">
+                <label class="form-check-label" for="checkbox_featuresxenon-lights"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "xenon-lights"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresxenon-lights" value="xenon-lights">
                   Światła Xenonowe</label>
               </td>
 
@@ -846,19 +846,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresleather-interior"><input <?php if (!empty(strpos($meta[0]->meta_val, "leather-interior"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresleather-interior" value="leather-interior">
+                <label class="form-check-label" for="checkbox_featuresleather-interior"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "leather-interior"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresleather-interior" value="leather-interior">
                   Tapicerka skórzana</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresvelour-interior"><input <?php if (!empty(strpos($meta[0]->meta_val, "velour-interior"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresvelour-interior" value="velour-interior">
+                <label class="form-check-label" for="checkbox_featuresvelour-interior"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "velour-interior"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresvelour-interior" value="velour-interior">
                   Tapicerka welurowa</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featurescruise-control"><input <?php if (!empty(strpos($meta[0]->meta_val, "cruise-control"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurescruise-control" value="cruise-control">
+                <label class="form-check-label" for="checkbox_featurescruise-control"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "cruise-control"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurescruise-control" value="cruise-control">
                   Tempomat</label>
               </td>
 
@@ -866,19 +866,19 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featuresactive-cruise-control"><input <?php if (!empty(strpos($meta[0]->meta_val, "active-cruise-control"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresactive-cruise-control" value="active-cruise-control">
+                <label class="form-check-label" for="checkbox_featuresactive-cruise-control"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "active-cruise-control"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuresactive-cruise-control" value="active-cruise-control">
                   Tempomat aktywny</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featurestv"><input <?php if (!empty(strpos($meta[0]->meta_val, "tv"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurestv" value="tv">
+                <label class="form-check-label" for="checkbox_featurestv"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "tv"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurestv" value="tv">
                   Tuner TV</label>
               </td>
 
 
               <td>
-                <label class="form-check-label" for="checkbox_featuressteering-whell-comands"><input <?php if (!empty(strpos($meta[0]->meta_val, "steering-whell-comands"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuressteering-whell-comands" value="steering-whell-comands">
+                <label class="form-check-label" for="checkbox_featuressteering-whell-comands"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "steering-whell-comands"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featuressteering-whell-comands" value="steering-whell-comands">
                   Wielofunkcyjna kierownica</label>
               </td>
 
@@ -886,7 +886,7 @@
             <tr>
 
               <td>
-                <label class="form-check-label" for="checkbox_featurescd-changer"><input <?php if (!empty(strpos($meta[0]->meta_val, "cd-changer"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurescd-changer" value="cd-changer">
+                <label class="form-check-label" for="checkbox_featurescd-changer"><input <?php if (!empty(strpos(@$meta[0]->meta_val, "cd-changer"))) echo 'checked'; ?> name="features[]" type="checkbox" class="form-check-input" id="checkbox_featurescd-changer" value="cd-changer">
                   Zmieniarka CD</label>
               </td>
 
