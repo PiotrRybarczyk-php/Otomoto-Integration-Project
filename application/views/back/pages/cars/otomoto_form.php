@@ -62,7 +62,7 @@ $body_type['Pozostałe'] = 'compact';
               Marka:
             </div>
             <div class="col-12 col-sm-8 col-lg-9">
-              <input class="form-control" style="text-transform:lowercase" type="text" name="make" value="<?= @$brand->name; ?>" readonly="readonly">
+              <input class="form-control" type="text" name="make" value="<?= strtolower(@$brand->name); ?>" readonly="readonly">
             </div>
           </div>
           <div class="row no-gutters">

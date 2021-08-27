@@ -97,7 +97,7 @@
               Rocznik:
             </div>
             <div class="col-12 col-sm-8 col-lg-9">
-              <input class="form-control" type="number" min="2000" max="<?= date("Y"); ?>" name="car_year" value="<?= @$value->car_year; ?>" required>
+              <input class="form-control" type="number" min="1920" max="<?= date("Y"); ?>" name="car_year" value="<?= @$value->car_year; ?>" required>
             </div>
           </div>
           <div class="row no-gutters">

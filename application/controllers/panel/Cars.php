@@ -114,6 +114,7 @@ class Cars extends CI_Controller
 			// DEFAULT DATA
 			$data = loadDefaultData();
 			if ($id != '') {
+				$this->back_m->fix_features($id);
 				$data['car'] = $this->back_m->get_one($table, $id);
 				$data['models'] = $this->back_m->get_models('brand_models', 'brand_id', $data['car']->brand_id);
 				$data['salon'] = $this->back_m->get_one('salons', $data['car']->salon_id);
