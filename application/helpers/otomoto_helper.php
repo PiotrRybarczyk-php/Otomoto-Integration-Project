@@ -1,4 +1,5 @@
 <?php
+//set of links to connect with
 function set_url($select)
 {
     switch ($select) {
@@ -27,6 +28,7 @@ function set_url($select)
             return 'https://www.otomoto.pl/api/open';
     }
 }
+//creates json string from array prepared for otomoto
 function otomoto_encode($data)
 {
     $string = '{';
@@ -46,11 +48,13 @@ function otomoto_encode($data)
     $string[strlen($string) - 1] = '}';
     return $string;
 }
+// access to otomoto api key
 function otomoto_api()
 {
     $api = '329:20db09f3e99a6fba22abdf2c756fe70b';
     return $api;
 }
+// just connection test
 function curl_connection_test($login, $password)
 {
     $url = set_url('auth');
@@ -65,7 +69,7 @@ function curl_connection_test($login, $password)
     curl_close($cURLConnection);
     return $apiResponse;
 }
-
+// gets token for connection bearer
 function curl_getToken($login, $password)
 {
     $url = set_url('auth');
@@ -82,7 +86,7 @@ function curl_getToken($login, $password)
 
     $_SESSION['token'] = $apiResponse->access_token;
 }
-
+// test function for displaying existing adverts
 function display_cars()
 {
     //displays posted cars
@@ -97,7 +101,7 @@ function display_cars()
     print_r($apiResponse);
     exit;
 }
-
+// test function for displaying avaiable regions
 function get_regions()
 {
     $url = set_url('regions');
@@ -110,7 +114,7 @@ function get_regions()
     print_r($apiResponse);
     exit;
 }
-
+// test function for displaying avaiable cities
 function get_cities()
 {
     $url = set_url('cities');
@@ -123,7 +127,7 @@ function get_cities()
     print_r($apiResponse);
     exit;
 }
-
+// test function for displaying avaiable districts
 function get_districts($id)
 {
     $url = set_url('disctricts');
@@ -137,7 +141,7 @@ function get_districts($id)
     print_r($apiResponse);
     exit;
 }
-
+// test function for displaying avaiable categories
 function get_categories($id)
 {
     $url = set_url('categories');
@@ -151,12 +155,12 @@ function get_categories($id)
     print_r($apiResponse);
     exit;
 }
-
+// sends images for advert to otomoto and return picture collection id
 function create_collection($images)
 {
     $temp_collection = array();
     for ($i = 0; $i < count($images); $i++) {
-        $temp_collection[strval($i + 1)] = 'https://ignaszak.pl/files/' . $images[$i]->folder . '/' . $images[$i]->filename;
+        $temp_collection[strval($i + 1)] = 'https://ignaszak.pl/files/' . $images[$i]->folder . '/' . $images[$i]->filename; // modify this to suit your picture path data
     }
     $post_string = otomoto_encode($temp_collection);
     $url = set_url('gallery');
@@ -170,10 +174,9 @@ function create_collection($images)
     curl_close($cURLConnection);
     return $apiResponse;
 }
-
+// activates car advert on otomoto
 function activate_car($id)
 {
-    //activate car's advert on otomoto
     $url = set_url('advert');
     $url .= '/' . $id . '/activate';
     $token = $_SESSION['token'];
@@ -185,10 +188,9 @@ function activate_car($id)
     curl_close($cURLConnection);
     return $apiResponse;
 }
-
+// script for posting a car advert on otomoto
 function add_car($car_data, $location)
 {
-    //script for posting a car advert on otomoto
     $url = set_url('advert');
     $token = $_SESSION['token'];
     $params = array();
@@ -222,6 +224,8 @@ function add_car($car_data, $location)
     //$params['video'] = $temp_array['video'];
     $params['features'] = $temp_array['features'];
     $post_array['title'] = $temp_array['title'];
+    $temp_array['description'] = str_replace("\n", " ", $temp_array['description']);
+    $temp_array['description'] = str_replace("\r", " ", $temp_array['description']);
     $post_array['description'] = $temp_array['description'];
     $post_array['category_id'] = $temp_array['category_id'];
     $post_array['region_id'] = 1;

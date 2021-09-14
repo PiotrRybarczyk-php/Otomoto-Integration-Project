@@ -160,6 +160,8 @@ class Cars extends CI_Controller
 					$this->back_m->update('cars', $meta_input, $id);
 					$this->session->set_flashdata('flashdata', 'Sukces! Auto Wystawione na Otomoto!');
 				} else {
+					print_r($result);
+					exit;
 					$this->session->set_flashdata('flashdata', 'Nie Udało się wystawić samochodu na Otomoto!');
 				}
 			}
