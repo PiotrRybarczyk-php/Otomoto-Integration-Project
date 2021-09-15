@@ -224,9 +224,8 @@ function add_car($car_data, $location)
     //$params['video'] = $temp_array['video'];
     $params['features'] = $temp_array['features'];
     $post_array['title'] = $temp_array['title'];
-    $temp_array['description'] = str_replace("\n", " ", $temp_array['description']);
-    $temp_array['description'] = str_replace("\r", " ", $temp_array['description']);
-    $post_array['description'] = $temp_array['description'];
+    $temp_array['description'] = json_encode($temp_array['description']);
+    $post_array['description'] = substr($temp_array['description'], 1, -1);
     $post_array['category_id'] = $temp_array['category_id'];
     $post_array['region_id'] = 1;
     $post_array['coordinates'] = '{"latitude": ' . $location['latitude'] . ',"longitude": ' . $location['longitude'] . '}';

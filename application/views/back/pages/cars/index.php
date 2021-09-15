@@ -1,4 +1,13 @@
     <!-- ########## START: MAIN PANEL ########## -->
+    <style>
+      .list_hover {
+        transition: 0.3s;
+      }
+
+      .list_hover:hover {
+        font-size: 18px;
+      }
+    </style>
     <div class="br-mainpanel">
       <div class="pd-30">
         <h4 class="tx-gray-800 mg-b-5"><?php echo ucfirst(str_replace('_', ' ', $this->uri->segment(2))); ?></h4>
@@ -15,13 +24,13 @@
                 <th class="wd-5p align-top">L.p.</th>
                 <th class="wd-5p align-top">Model</th>
                 <th class="wd-10p align-top">Nazwa</th>
-                <th class="wd-5p align-top no-sort">Status</th>
-                <th class="wd-5p align-top">Sprzedawca</th>
-                <th class="wd-5p align-top">Kategoria</th>
+                <!--<th class="wd-5p align-top no-sort">Status</th>-->
+                <th class="wd-5p align-top">Sprzed.</th>
+                <th class="wd-5p align-top">Kat.</th>
                 <th class="wd-5p align-top">Cena</th>
-                <th class="wd-5p align-top no-sort">Widoczność<br>Strona</th>
-                <th class="wd-5p align-top no-sort">Widoczność<br>Otomoto</th>
-                <th class="wd-10p text-right no-sort">
+                <th class="wd-5p align-top no-sort">Wid.<br>Strona</th>
+                <th class="wd-5p align-top no-sort">Wid.<br>Otomoto</th>
+                <th class="wd-20p text-right no-sort">
                   <a href="<?php echo base_url(); ?>panel/<?php echo $this->uri->segment(2); ?>/form/insert" class="btn btn-sm btn-info"><i class="fa fa-plus mg-r-10"></i> Dodaj</a>
                 </th>
               </tr>
@@ -37,22 +46,22 @@
                 $car_info[1] = $this->back_m->get_one('brand_models', $value->brand_model_id)->name ?? ' ';
                 $car_info[2] = $value->otomoto_status . '<br>' . $value->otomoto_updated;
                 $temp = $this->back_m->get_one('user', $value->user_id);
-                $car_info[3] = $temp->name . ' ' . $temp->surname;
-                if ($value->publish == 1) $car_info[4] = '<font style="color:green;font-weight:bold;">Publiczny</font>';
-                else $car_info[4] = '<font style="color:red;font-weight:bold;">Niepubliczny</font>';
-                if ($value->otomoto_publish == 1) $car_info[5] = '<font style="color:green;font-weight:bold;">Publiczny</font>';
-                else $car_info[5] = '<font style="color:red;font-weight:bold;">Niepubliczny</font>';
+                $car_info[3] = $temp->name . ' ' . substr($temp->surname, 0, 2) . '.';
+                if ($value->publish == 1) $car_info[4] = '<a href="https://ignaszak.pl/cars/' . $value->id . '" class="list_hover" target="_blank"><font style="color:green;font-weight:bold;">Publ.</font></a>';
+                else $car_info[4] = '<font style="color:red;font-weight:bold;">Niepub.</font>';
+                if ($value->otomoto_publish == 1) $car_info[5] = '<a href="' . $value->otomoto_auction_url . '" class="list_hover" target="_blank"><font style="color:green;font-weight:bold;">Publ.</font></a>';
+                else $car_info[5] = '<font style="color:red;font-weight:bold;">Niepub.</font>';
                 ?>
                 <tr>
                   <td class="align-middle"><?php echo $i; ?>.</td>
                   <td class="align-middle"><?= $car_info[0] . ' ' . $car_info[1]; ?></td>
                   <td class="align-middle" style="white-space:normal;"><?php echo substr($value->title, 0, 70);
                                                                         if (strlen($value->title) > 70) echo '...' ?></td>
-                  <td class="align-middle"><?= $car_info[2]; ?></td>
+                  <!--<td class="align-middle"><?= $car_info[2]; ?></td>-->
                   <td class="align-middle"><?= $car_info[3]; ?></td>
                   <td class="align-middle"><?= $value->category; ?></td>
-                  <td class="align-middle"><?= $value->price; ?></td>
-                  <td class="align-middle"><?= $car_info[4]; ?></td>
+                  <td class="align-middle"><?= number_format($value->price); ?></td>
+                  <td class="align-middle"><a><?= $car_info[4]; ?></a></td>
                   <td class="align-middle"><?= $car_info[5]; ?></td>
                   <td class="text-right">
                     <a href="<?php echo base_url(); ?>panel/<?= $this->uri->segment(2); ?>/gallery/<?php echo $value->id; ?>" class="btn btn-sm btn-secondary"><i class="icon ion-images mg-r-10"></i> Galeria</a>

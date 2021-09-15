@@ -166,7 +166,7 @@
               Data Pierw. Rejestracji:
             </div>
             <div class="col-12 col-sm-8 col-lg-9">
-              <input class="form-control" type="date" onkeydown="return false" name="first_register" value="<?= @$value->first_register; ?>" required>
+              <input class="form-control" type="date" name="first_register" value="<?= @$value->first_register; ?>" required>
             </div>
           </div>
           <div class="row no-gutters">
@@ -379,7 +379,7 @@
               Rata Miesięczna:
             </div>
             <div class="col-12 col-sm-8 col-lg-9">
-              <input class="form-control" type="number" name="price_leasing" value="<?= @$value->price_leasing; ?>" required>
+              <input class="form-control" type="number" name="price_leasing" id='monthly' disabled value="<?= @$value->price_leasing; ?>">
             </div>
           </div>
 
@@ -401,7 +401,7 @@
               Dostępny Leasing:
             </div>
             <div class="col-12 col-sm-8 col-lg-9">
-              <select class="form-control" id="leasing" name="leasing">
+              <select class="form-control" onchange="disableField()" id="leasing" name="leasing">
                 <option <?php if (@$value->leasing == 0) echo "selected"; ?> value="0">Nie</option>
                 <option <?php if (@$value->leasing == 1) echo "selected"; ?> value="1">Tak</option>
               </select>
@@ -906,3 +906,9 @@
         <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Anuluj</button>
       </div>
     </form><!-- form-layout -->
+    <script>
+      function disableField() {
+        if (document.getElementById("leasing").value == 0) document.getElementById("monthly").disabled = true;
+        else document.getElementById("monthly").disabled = false;
+      }
+    </script>
