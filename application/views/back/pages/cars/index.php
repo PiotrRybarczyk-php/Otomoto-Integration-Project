@@ -1,11 +1,39 @@
     <!-- ########## START: MAIN PANEL ########## -->
     <style>
       .list_hover {
-        transition: 0.3s;
+        background-color: #33ee33;
+        color: white !important;
+        font-weight: bold;
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.65rem 0.75rem;
+        line-height: 1.25;
+        border-radius: 3px;
+        transition: all 0.15s ease-in-out;
+      }
+
+      .list_block {
+        background-color: #ee3333;
+        color: white !important;
+        font-weight: bold;
+        display: inline-block;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.65rem 0.75rem;
+        line-height: 1.25;
+        border-radius: 3px;
+        transition: all 0.15s ease-in-out;
       }
 
       .list_hover:hover {
-        font-size: 18px;
+        background-color: #ffde2f;
       }
     </style>
     <div class="br-mainpanel">
@@ -47,10 +75,10 @@
                 $car_info[2] = $value->otomoto_status . '<br>' . $value->otomoto_updated;
                 $temp = $this->back_m->get_one('user', $value->user_id);
                 $car_info[3] = $temp->name . ' ' . substr($temp->surname, 0, 2) . '.';
-                if ($value->publish == 1) $car_info[4] = '<a href="https://ignaszak.pl/cars/' . $value->id . '" class="list_hover" target="_blank"><font style="color:green;font-weight:bold;">Publ.</font></a>';
-                else $car_info[4] = '<font style="color:red;font-weight:bold;">Niepub.</font>';
-                if ($value->otomoto_publish == 1) $car_info[5] = '<a href="' . $value->otomoto_auction_url . '" class="list_hover" target="_blank"><font style="color:green;font-weight:bold;">Publ.</font></a>';
-                else $car_info[5] = '<font style="color:red;font-weight:bold;">Niepub.</font>';
+                if ($value->publish == 1) $car_info[4] = '<a href="https://ignaszak.pl/cars/' . $value->id . '" class="list_hover" target="_blank"><font><i class="fas fa-search"></i></font></a>';
+                else $car_info[4] = '<a class="list_block"><font><i class="fas fa-times"></i></font></a>';
+                if ($value->otomoto_publish == 1) $car_info[5] = '<a href="' . $value->otomoto_auction_url . '" class="list_hover" target="_blank"><font><i class="fas fa-search"></i></font></a>';
+                else $car_info[5] = '<a class="list_block"><font><i class="fas fa-times"></i></font></a>';
                 ?>
                 <tr>
                   <td class="align-middle"><?php echo $i; ?>.</td>
@@ -64,7 +92,7 @@
                   <td class="align-middle"><a><?= $car_info[4]; ?></a></td>
                   <td class="align-middle"><?= $car_info[5]; ?></td>
                   <td class="text-right">
-                    <a href="<?php echo base_url(); ?>panel/<?= $this->uri->segment(2); ?>/gallery/<?php echo $value->id; ?>" class="btn btn-sm btn-secondary"><i class="icon ion-images mg-r-10"></i> Galeria</a>
+                    <a href="<?php echo base_url(); ?>panel/<?= $this->uri->segment(2); ?>/gallery/<?php echo $value->id; ?>" class="btn btn-sm btn-secondary"><i class="icon ion-images mg-r-10"></i> Zdjęcia</a>
                     <a href="<?php echo base_url(); ?>panel/<?= $this->uri->segment(2); ?>/otomoto_form/<?php echo $value->id; ?>" class="btn btn-sm btn-secondary"><i class="icon ion-compose mg-r-10"></i> Edycja Otomoto</a>
                     <br>
                     <a href="<?php echo base_url(); ?>panel/<?php echo $this->uri->segment(2); ?>/form/update/<?php echo $value->id; ?>" class="btn btn-sm btn-info"><i class="icon ion-compose mg-r-10"></i> Edytuj</a>
